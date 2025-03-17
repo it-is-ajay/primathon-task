@@ -1,4 +1,3 @@
-import { Select } from 'antd';
 import './index.scss';
 
 function Dashboard() {

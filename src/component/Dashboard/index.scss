@@ -24,8 +24,12 @@
 
             &_left {
                 width: 50%;
+                height: 70%;
                 padding: 100px 0px 0px 30px;
                 color: whitesmoke;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
 
                 label {
                     font-family: 'Times New Roman', Times, serif;
@@ -38,6 +42,7 @@
 
                 button {
                     color: #002847;
+                    width: 30%;
                     margin: 30px 0px 30px 0px;
                     font-weight: 700;
                     background-color: whitesmoke;
@@ -122,7 +127,7 @@
     }
 
     &_2nd {
-        height: 80vh;
+        height: 60vh;
         width: 100%;
 
         &_top {
@@ -409,9 +414,9 @@
 
         &_top {
             height: 25%;
-            background-color: lightblue;
-            padding: 80px 50px 20px 50px;
+            padding: 80px 100px 20px 100px;
             box-sizing: border-box;
+
             label {
                 font-size: 35px;
                 font-family: 'Times New Roman', Times, serif;
@@ -426,13 +431,547 @@
 
         &_middle {
             height: 60%;
-            background-color: lightcoral;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 100px;
+
+            &_left {
+                width: 30%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                &_card {
+                    background-color: #002847;
+                    height: 35%;
+                    border-radius: 10px;
+                    padding: 15px;
+                    box-sizing: border-box;
+
+                    p {
+                        color: whitesmoke;
+                        font-size: 13px;
+                    }
+                }
+
+                &_chart {
+                    height: 63%;
+                    border-radius: 10px;
+                    background-color: whitesmoke;
+                    border: rgb(226, 226, 226) 1px solid;
+
+                    label {
+                        font-size: 18px;
+                        font-weight: 700;
+                        padding: 20px 20px;
+                    }
+                }
+
+            }
+
+            &_right {
+                width: 68%;
+                height: 100%;
+                border-radius: 10px;
+                border: rgb(226, 226, 226) 1px solid;
+
+                &_info {
+                    height: 35%;
+                    padding: 10px 20px;
+                    box-sizing: border-box;
+
+                    label {
+                        font-size: 22px;
+                        font-weight: 700;
+                    }
+
+                    &_cards {
+
+                        margin-top: 20px;
+                        display: flex;
+                        justify-content: space-between;
+
+                        &_card {
+                            height: 35%;
+                            border-radius: 10px;
+                            padding: 15px;
+                            width: 30%;
+                            box-sizing: border-box;
+                            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+                            p {
+                                span {
+                                    border-radius: 50%;
+                                    margin-right: 5px;
+                                    display: inline-block;
+                                    height: 10px;
+                                    width: 10px;
+                                    background-color: #002847;
+                                }
+
+                                color: rgb(155, 155, 155);
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+
+                &_graph {
+                    height: 63%;
+                    padding: 10px 20px;
+
+                    label {
+                        font-size: 18px;
+                        font-weight: 700;
+                        padding: 20px 20px;
+                    }
+                }
+            }
+        }
+
+        &_bottom {
+            height: 15%;
+            display: flex;
+            justify-content: center;
+            padding: 10px 100px;
+            align-items: center;
+
+            div {
+                padding: 10px 10px;
+                border-radius: 10px;
+                border: rgb(226, 226, 226) 1px solid;
+                width: 100%;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &_5th {
+        height: 60vh;
+        width: 100%;
+        background-color: whitesmoke;
+
+        &_top {
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            box-sizing: border-box;
+            align-items: center;
+            width: 100%;
+            height: 40%;
+
+            label {
+                font-size: 46px;
+                font-family: 'Times New Roman', Times, serif;
+                font-weight: 500;
+            }
+
+            p {
+                font-weight: 500;
+                text-align: center;
+                color: rgb(103, 103, 103);
+            }
+        }
+
+        &_bottom {
+            width: 100%;
+            height: 60%;
+            padding: 0px 80px 0px 80px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-around;
+
+            &_cards {
+                border-radius: 10px;
+                background-color: whitesmoke;
+                width: 350px;
+                height: 250px;
+                padding: 0px 20px 0px 20px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+                &_icon {
+                    height: 25%;
+                    padding: 20px 0px 0px 10px;
+                    box-sizing: border-box;
+
+                    i {
+                        background-color: #015ca3;
+                        padding: 8px;
+                        border-radius: 5px;
+                        color: whitesmoke;
+                    }
+                }
+
+                &_content {
+                    height: 30%;
+                }
+
+                &_profile {
+                    height: 30%;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        border: 1px solid black;
+                        border-radius: 50%;
+                        width: 15%;
+                        height: 70%;
+                        margin-right: 10px;
+                    }
+
+                    span {
+                        :first-child {
+                            color: black;
+                            font-weight: 700;
+                        }
+                    }
+
+                }
+
+                section {
+                    label {
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+
+                    p {
+                        color: rgb(103, 103, 103);
+                        font-size: 12px;
+                    }
+
+                }
+            }
+        }
+    }
+
+    &_6th {
+        height: 100vh;
+        width: 100%;
+
+        &_top {
+            height: 25%;
+            padding: 80px 100px 20px 100px;
+            box-sizing: border-box;
+            text-align: center;
+
+            label {
+                font-size: 35px;
+                font-family: 'Times New Roman', Times, serif;
+                font-weight: 500;
+            }
+
+            p {
+                color: rgb(96, 94, 94);
+                font-size: 14px;
+            }
+        }
+
+        &_middle {
+            height: 60%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 100px;
+
+            &_left {
+                width: 30%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                background-color: #002847;
+                border-radius: 10px;
+                padding: 15px;
+                box-sizing: border-box;
+
+                section {
+                    p {
+                        color: whitesmoke;
+                    }
+
+                    label {
+                        color: rgb(202, 202, 202);
+                        font-size: 14px;
+                    }
+
+                    input {
+                        padding-left: 10px;
+                        width: 98%;
+                        outline: none;
+                        border: none;
+                        border-radius: 10px;
+                        height: 35px;
+                    }
+                }
+
+                &_btn {
+                    button {
+                        background-color: #0176d2;
+                        outline: none;
+                        border: none;
+                        color: whitesmoke;
+                        font-size: 18px;
+                        width: 100%;
+                        height: 40px;
+                        border-radius: 10px;
+                    }
+                }
+
+            }
+
+            &_right {
+                width: 68%;
+                height: 100%;
+                border-radius: 10px;
+                border: rgb(226, 226, 226) 1px solid;
+
+                &_info {
+                    height: 25%;
+                    padding: 10px 20px;
+                    box-sizing: border-box;
+
+                    &_cards {
+
+                        margin-top: 10px;
+                        display: flex;
+                        justify-content: space-between;
+
+                        &_card {
+                            height: 35%;
+                            border-radius: 10px;
+                            padding: 15px;
+                            width: 30%;
+                            box-sizing: border-box;
+                            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+                            p {
+                                span {
+                                    border-radius: 50%;
+                                    margin-right: 5px;
+                                    display: inline-block;
+                                    height: 10px;
+                                    width: 10px;
+                                    background-color: #002847;
+                                }
+
+                                color: rgb(155, 155, 155);
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+
+                &_graph {
+                    height: 63%;
+                    padding: 10px 20px;
+
+                    p {
+                        color: rgb(161, 161, 161);
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        &_bottom {
+            height: 15%;
+            display: flex;
+            justify-content: center;
+            padding: 10px 100px;
+            align-items: center;
+
+            div {
+                padding: 10px 10px;
+                border-radius: 10px;
+                border: rgb(226, 226, 226) 1px solid;
+                width: 100%;
+                text-align: center;
+                font-size: 15px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &_7th {
+        min-height: 55vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        &_main {
+            width: 50%;
+            height: 100%;
+            text-align: center;
+
+            label {
+                font-size: 35px;
+                font-family: 'Times New Roman', Times, serif;
+                font-weight: 500;
+            }
+
+            p {
+                color: rgb(96, 94, 94);
+                font-size: 14px;
+            }
+        }
+    }
+
+    &_8th {
+        min-height: 100vh;
+        width: 100%;
+
+        &_top {
+            height: 20%;
+            padding: 80px 100px 20px 100px;
+            // box-sizing: border-box;
+            text-align: center;
+
+            label {
+                font-size: 35px;
+                font-family: 'Times New Roman', Times, serif;
+                font-weight: 500;
+            }
+
+            p {
+                color: rgb(96, 94, 94);
+                font-size: 14px;
+            }
+        }
+
+        &_middle {
+            height: 65%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 100px;
+
+            &_top,
+            &_bottom {
+                height: 95%;
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+            }
+
+            &_cards {
+                border-radius: 10px;
+                background-color: whitesmoke;
+                width: 35%;
+                height: 200px;
+                padding: 0px 20px 0px 20px;
+                margin-bottom: 20px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+                &_icon {
+                    height: 40%;
+                    padding: 20px 0px 0px 10px;
+                    box-sizing: border-box;
+
+                    i {
+                        background-color: #015ca3;
+                        padding: 8px;
+                        border-radius: 5px;
+                        color: whitesmoke;
+                    }
+                }
+
+                &_content {
+                    height: 60%;
+                }
+
+                section {
+                    label {
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+
+                    p {
+                        color: rgb(103, 103, 103);
+                        font-size: 12px;
+                    }
+
+                }
+            }
 
         }
 
         &_bottom {
             height: 15%;
-            background-color: lightgreen;
+            display: flex;
+            justify-content: center;
+            padding: 10px 100px;
+            align-items: center;
+
+            div {
+                padding: 10px 10px;
+                border-radius: 10px;
+                border: rgb(226, 226, 226) 1px solid;
+                width: 100%;
+                text-align: center;
+                font-size: 15px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &_footer {
+        height: 50vh;
+        width: 100%;
+        background-color: #002847;
+        padding: 10px 100px;
+        box-sizing: border-box;
+
+        header {
+            height: 80%;
+            color: rgb(179, 179, 179);
+            display: flex;
+            padding-top: 20px;
+            box-sizing: border-box;
+        }
+
+        &_col1 {
+            width: 30%;
+
+            label {
+                font-size: 35px;
+                color: whitesmoke;
+            }
+        }
+
+        &_col2 {
+            width: 20%;
+        }
+
+        &_col3 {
+            width: 20%;
+        }
+
+        &_col4 {
+            width: 15%;
+        }
+
+        &_col5 {
+            width: 15%;
+        }
+
+        &_col2,
+        &_col3,
+        &_col4,
+        &_col5 {
+            label {
+                font-size: 14px;
+                font-weight: 700;
+                color: whitesmoke;
+            }
+        }
+
+        footer {
+            height: 20%;
+            border-top: 1px solid rgb(165, 165, 165);
+            color: whitesmoke;
         }
     }
 }

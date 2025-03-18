@@ -1,6 +1,160 @@
 import './index.scss';
-
+import { useEffect, useRef } from 'react';
+import * as echarts from "echarts";
+import { Collapse } from 'antd'
 function Dashboard() {
+    const chartRef = useRef(null);
+    const graphRef = useRef(null);
+    const graph2Ref = useRef(null);
+
+    const text = `
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+  `;
+
+    const items = [
+        {
+            key: '1',
+            label: 'How much can i contribute to an ISA each year?',
+            children: <p>{text}</p>,
+        },
+        {
+            key: '2',
+            label: 'Can i have multiple ISA accounts?',
+            children: <p>{text}</p>,
+        },
+        {
+            key: '3',
+            label: 'Can i transfer an ISA from another provider?',
+            children: <p>{text}</p>,
+        },
+        {
+            key: '4',
+            label: 'How can i transfer out my ISA to another provider?',
+            children: <p>{text}</p>,
+        },
+        {
+            key: '5',
+            label: 'Can i withdraw from my ISA?',
+            children: <p>{text}</p>,
+        },
+    ];
+
+
+
+    useEffect(() => {
+        const chartInstance = echarts.init(chartRef.current);
+        const graphInstance = echarts.init(graphRef.current);
+        const graph2Instance = echarts.init(graph2Ref.current);
+
+        const chartOptions = {
+            tooltip: {
+                trigger: "item",
+            },
+            legend: {
+                bottom: '0%',
+                left: 'center'
+            },
+            series: [
+                {
+                    name: "Portfolio",
+                    type: "pie",
+                    radius: ['40%', '70%'], // Adjust the thickness of the ring
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: true,
+                        position: "inside",
+                        formatter: "{d}%", // Show percentage values
+                        fontSize: 12,
+                        color: "#fff",
+                        fontWeight: "bold",
+                    },
+                    labelLine: {
+                        show: false, // Hide label lines
+                    },
+                    data: [
+                        { value: 20, name: "Equities", itemStyle: { color: "#4A90E2" } }, // Medium blue
+                        { value: 30, name: "Private Bonds", itemStyle: { color: "#1976D2" } }, // Dark blue
+                        { value: 10, name: "Government Bonds", itemStyle: { color: "#63A4FF" } }, // Light blue
+                        { value: 40, name: "Others", itemStyle: { color: "#E0E0E0" } }, // Light gray
+                    ],
+                },
+            ],
+        };
+
+        const graphOptions = {
+            title: {
+                text: 'Stacked Line'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: 'Email',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Union Ads',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: 'Video Ads',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: 'Direct',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: 'Search Engine',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                }
+            ]
+        };
+
+
+        chartInstance.setOption(chartOptions);
+        graphInstance.setOption(graphOptions);
+        graph2Instance.setOption(graphOptions);
+
+        return () => {
+            chartInstance.dispose();
+            graphInstance.dispose();
+            graph2Instance.dispose();
+        };
+    }, []);
     return <>
         <div className='dashboard'>
             <div className='dashboard_about'>
@@ -27,22 +181,25 @@ function Dashboard() {
                 </header>
                 <div className='dashboard_about_content'>
                     <section className='dashboard_about_content_left'>
-                        <label>
-                            What is Stock & Share ISA ?
-                        </label>
-                        <p>
-                            A stocks and Shares ISA is  a tax-efficient account for investing in stocks, bonds, ETF's and more. Profits, dividends and interest are tax-free, making it deal for long-term wealth growth.
-                        </p>
-                        <p>
-                            This tax year the ISA allowance is E20,000.
-                        </p>
-                        <button>
-                            Start Investing Now
-                            &nbsp;<i className="bi bi-arrow-right" />
-                        </button>
-                        <p>
-                            Investing comes with inherent risks, meaning the value of your investments can go up or down, and you may get back less than you originally invested.
-                        </p>
+                        <div>
+                            <label>
+                                What is Stock & Share ISA ?
+                            </label>
+                            <p>
+                                A stocks and Shares ISA is  a tax-efficient account for investing in stocks, bonds, ETF's and more. Profits, dividends and interest are tax-free, making it deal for long-term wealth growth.
+                                <br /><br />This tax year the ISA allowance is E20,000.
+                            </p>
+                        </div>
+                        <div>
+                            <button>
+                                Start Investing Now
+                                &nbsp;<i className="bi bi-arrow-right" />
+                            </button>
+                            <p>
+                                Investing comes with inherent risks, meaning the value of your investments can go up or down, and you may get back less than you originally invested.
+                            </p>
+                        </div>
+
 
                     </section>
                     <section className='dashboard_about_content_right'>
@@ -238,11 +395,443 @@ function Dashboard() {
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 </section>
                 <div className='dashboard_4th_middle'>
-
+                    <div className='dashboard_4th_middle_left'>
+                        <section className='dashboard_4th_middle_left_card'>
+                            <p>Choose your investment style</p>
+                            <select>
+                                <option value="" key="">Defensive</option>
+                                <option value="" key="">Option 1</option>
+                                <option value="" key="">Option 2</option>
+                            </select>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                            </p>
+                        </section>
+                        <section className='dashboard_4th_middle_left_chart'>
+                            <br />
+                            <label>
+                                Asset Allocation
+                            </label>
+                            <div ref={chartRef} style={{ width: "400px", height: "300px" }} />
+                        </section>
+                    </div>
+                    <div className='dashboard_4th_middle_right'>
+                        <section className='dashboard_4th_middle_right_info'>
+                            <label>
+                                Overview of Historical Performance
+                            </label>
+                            <div className='dashboard_4th_middle_right_info_cards'>
+                                <div className='dashboard_4th_middle_right_info_cards_card'>
+                                    <p>
+                                        <span></span>
+                                        Beehive Portfolio
+                                    </p>
+                                    <label>
+                                        40.20%
+                                    </label>
+                                </div>
+                                <div className='dashboard_4th_middle_right_info_cards_card'>
+                                    <p>
+                                        <span></span>
+                                        Benchmark
+                                    </p>
+                                    <label>
+                                        48.20%
+                                    </label>
+                                </div>
+                                <div className='dashboard_4th_middle_right_info_cards_card'>
+                                    <p>
+                                        <span></span>
+                                        Competitor's
+                                    </p>
+                                    <label>
+                                        33.50%
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+                        <section className='dashboard_4th_middle_right_graph'>
+                            <div ref={graphRef} style={{ width: "100%", height: "100%" }} />
+                        </section>
+                    </div>
                 </div>
                 <section className='dashboard_4th_bottom'>
+                    <div>
+                        This is a future projection and it depends on the style of investment.
+                    </div>
+                </section>
+            </div>
+            <br />
+            <div className='dashboard_5th'>
+                <section className='dashboard_5th_top'>
+                    <label>
+                        What our client say
+                    </label>
+                    <p>
+                        Hear first-hand from our incredible community of customers.
+                    </p>
+                </section>
+                <section className='dashboard_5th_bottom'>
+                    <div className='dashboard_5th_bottom_cards'>
+                        <section className='dashboard_5th_bottom_cards_icon'>
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star" />
+                        </section>
+                        <section className='dashboard_5th_bottom_cards_content'>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s                            </p>
+                        </section>
+                        <section className='dashboard_5th_bottom_cards_profile'>
+                            <img src="Anonymous.png" alt="" />
+                            <span>
+                                <p>Olivia Albrtoss</p>
+                                <p>@olly</p>
+                            </span>
+                        </section>
+                    </div>
+                    <div className='dashboard_5th_bottom_cards'>
+                        <section className='dashboard_5th_bottom_cards_icon'>
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star" />
+                        </section>
+                        <section className='dashboard_5th_bottom_cards_content'>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s                            </p>
+                        </section>
+                        <section className='dashboard_5th_bottom_cards_profile'>
+                            <img src="Anonymous.png" alt="" />
+                            <span>
+                                <p>Olivia Albrtoss</p>
+                                <p>@olly</p>
+                            </span>
+                        </section>
+                    </div>
+                    <div className='dashboard_5th_bottom_cards'>
+                        <section className='dashboard_5th_bottom_cards_icon'>
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star checked" style={{
+                                color: 'gold'
+                            }} />
+                            <span className="fa fa-star" />
+                        </section>
+                        <section className='dashboard_5th_bottom_cards_content'>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s                            </p>
+                        </section>
+                        <section className='dashboard_5th_bottom_cards_profile'>
+                            <img src="Anonymous.png" alt="" />
+                            <span>
+                                <p>Olivia Albrtoss</p>
+                                <p>@olly</p>
+                            </span>
+                        </section>
+                    </div>
+                </section>
+            </div>
+            <div className='dashboard_6th'>
+                <section className='dashboard_6th_top'>
+                    <label>
+                        Historical performance
+                    </label>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                    </p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </section>
+                <div className='dashboard_6th_middle'>
+                    <div className='dashboard_6th_middle_left'>
+                        <section >
+                            <p>
+                                Enter details to preview how your ISA can grow
+                            </p>
+                            <div>
+                                <label>
+                                    One-time contribution
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder='€500'
+                                />
+                            </div>
+                            <br />
+                            <div>
+                                <label>
+                                    Monthly contribution
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder='€500'
+                                />
+                            </div>
+                        </section>
+                        <section className='dashboard_6th_middle_left_btn'>
+                            <button>
+                                Calculate
+                            </button>
+                        </section>
 
-                </section >
+                    </div>
+                    <div className='dashboard_6th_middle_right'>
+                        <section className='dashboard_6th_middle_right_info'>
+                            <div className='dashboard_6th_middle_right_info_cards'>
+                                <div className='dashboard_6th_middle_right_info_cards_card'>
+                                    <p>
+                                        <span></span>
+                                        Beehive Portfolio
+                                    </p>
+                                    <label>
+                                        40.20%
+                                    </label>
+                                </div>
+                                <div className='dashboard_6th_middle_right_info_cards_card'>
+                                    <p>
+                                        <span></span>
+                                        Benchmark
+                                    </p>
+                                    <label>
+                                        48.20%
+                                    </label>
+                                </div>
+                                <div className='dashboard_6th_middle_right_info_cards_card'>
+                                    <p>
+                                        <span></span>
+                                        Competitor's
+                                    </p>
+                                    <label>
+                                        33.50%
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+                        <section className='dashboard_6th_middle_right_graph'>
+                            <div ref={graph2Ref} style={{ width: "100%", height: "80%" }} />
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                <br />
+                                <br />
+                                printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+                <section className='dashboard_6th_bottom'>
+                    <div>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </div>
+                </section>
+            </div>
+            <br /><br />
+            <div className='dashboard_7th'>
+                <section className='dashboard_7th_main'>
+                    <label>
+                        Frequently asked questions
+                    </label>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                    </p>
+                    <Collapse items={items} defaultActiveKey={['1']} />
+                </section>
+            </div>
+            <div className='dashboard_8th'>
+                <section className='dashboard_8th_top'>
+                    <label>
+                        Other userful investments services we provideś
+                    </label>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
+                    </p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </section>
+                <div className='dashboard_8th_middle'>
+                    <section className='dashboard_8th_middle_top'>
+                        <div className='dashboard_8th_middle_cards'>
+                            <section className='dashboard_8th_middle_cards_icon'>
+                                <i className="bi bi-bag-heart" />
+                            </section>
+                            <section className='dashboard_8th_middle_cards_content'>
+                                <label>
+                                    Expertly Managed Portfolios
+                                </label>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                </p>
+                                <a href="#">Learn more &nbsp;<i className="bi bi-arrow-right" /></a>
+                            </section>
+                        </div>
+                        <div className='dashboard_8th_middle_cards'>
+                            <section className='dashboard_8th_middle_cards_icon'>
+                                <i className="bi bi-bag-heart" />
+                            </section>
+                            <section className='dashboard_8th_middle_cards_content'>
+                                <label>
+                                    Expertly Managed Portfolios
+                                </label>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                </p>
+                                <a href="#">Learn more &nbsp;<i className="bi bi-arrow-right" /></a>
+                            </section>
+                        </div>
+                    </section>
+                    <section className='dashboard_8th_middle_bottom'>
+                        <div className='dashboard_8th_middle_cards'>
+                            <section className='dashboard_8th_middle_cards_icon'>
+                                <i className="bi bi-bag-heart" />
+                            </section>
+                            <section className='dashboard_8th_middle_cards_content'>
+                                <label>
+                                    Expertly Managed Portfolios
+                                </label>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                </p>
+                                <a href="#">Learn more &nbsp;<i className="bi bi-arrow-right" /></a>
+                            </section>
+                        </div>
+                        <div className='dashboard_8th_middle_cards'>
+                            <section className='dashboard_8th_middle_cards_icon'>
+                                <i className="bi bi-bag-heart" />
+                            </section>
+                            <section className='dashboard_8th_middle_cards_content'>
+                                <label>
+                                    Expertly Managed Portfolios
+                                </label>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                </p>
+                                <a href="#">Learn more &nbsp;<i className="bi bi-arrow-right" /></a>
+                            </section>
+                        </div>
+                    </section>
+                </div>
+                <section className='dashboard_8th_bottom'>
+                    <div>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+                    </div>
+                </section>
+            </div>
+            <br /><br />
+            <div className='dashboard_footer'>
+                <header>
+                    <section className='dashboard_footer_col1'>
+                        <label>
+                            LOGO
+                        </label>
+                        <p>
+                            16 Caefai Bay Road
+                            <br />
+                            Tempal Ewell
+                            <br />
+                            CT16 6NT
+                            <br />
+                            Country: United Kingdom
+                        </p>
+                        <p>
+                            Authorized and regulated by the Financial Conduct Authority
+                        </p>
+                    </section>
+                    <section className='dashboard_footer_col2'>
+                        <label>
+                            Product
+                        </label>
+                        <p>
+                            Stocks & Shares ISA
+                        </p>
+                        <p>
+                            Stocks & Shares Lifetime ISA
+                        </p>
+                        <p>
+                            Stocks & Shares Junior ISA
+                        </p>
+                        <p>
+                            General Investments
+                        </p>
+                        <p>
+                            Self-Invested Personal Pension
+                        </p>
+                    </section>
+                    <section className='dashboard_footer_col3'>
+                        <label>
+                            Tools
+                        </label>
+                        <p>
+                            Compound Returns Calculator
+                        </p>
+                        <p>
+                            ISA Calculator
+                        </p>
+                        <p>
+                            Pension Calculator
+                        </p>
+                        <p>
+                            Portofolio Comparator
+                        </p>
+                    </section>
+                    <section className='dashboard_footer_col4'>
+                        <label>
+                            Company
+                        </label>
+                        <p>
+                            About US
+                        </p>
+                        <p>
+                            Pricing
+                        </p>
+                        <p>
+                            Help
+                        </p>
+                    </section>
+                    <section className='dashboard_footer_col5'>
+                        <label>
+                            Legal
+                        </label>
+                        <p>
+                            Terms
+                        </p>
+                        <p>
+                            Privacy
+                        </p>
+                        <p>
+                            Cookies
+                        </p>
+                        <p>
+                            Licenses
+                        </p>
+                    </section>
+                </header>
+                <footer>
+                    © 2077 Beehive Investments. All right reserved.
+                </footer>
             </div>
         </div>
     </>
